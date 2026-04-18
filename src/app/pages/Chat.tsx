@@ -263,12 +263,13 @@ export function Chat() {
         setIsInitializing(false);
       } catch (e) {
         console.error(e);
+        const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
         clearInterval(stepInterval);
         setIsInitializing(false);
         setMessages([{
           id: `ai-err`,
           role: "ai",
-          content: "Failed to connect to the backend server. Please verify it is running on port 5000.",
+          content: `Failed to connect to the backend at ${API_URL}. The server may be waking up (please wait 1 minute and try again).`,
           timestamp: new Date()
         }]);
       }
@@ -353,10 +354,11 @@ export function Chat() {
       }
     } catch (e) {
       console.error(e);
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
       setMessages((prev) => [...prev, {
         id: `ai-err-${Date.now()}`,
         role: "ai",
-        content: "Error connecting to the backend server.",
+        content: `Error connecting to the backend at ${API_URL}. The server may be waking up (please wait 1 minute and try again).`,
         timestamp: new Date()
       }]);
     }
