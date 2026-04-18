@@ -212,8 +212,9 @@ export function Chat() {
     }, 700);
 
     const initChat = async () => {
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
       try {
-        const response = await fetch("http://localhost:5000/api/query", {
+        const response = await fetch(`${API_URL}/api/query`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ userId: userName || "anonymous_user", patientName: userName, disease, query, location })
@@ -326,7 +327,8 @@ export function Chat() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/query", {
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      const response = await fetch(`${API_URL}/api/query`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId: userName || "anonymous_user", disease, query: userContent })
