@@ -2,7 +2,7 @@ const axios = require('axios');
 
 const generateResponse = async (disease, query, topPublications, topTrials) => {
   const GROQ_API_KEY = process.env.GROQ_API_KEY;
-  const MODEL = process.env.OLLAMA_MODEL || 'mistral-7b-32768';
+  const MODEL = process.env.OLLAMA_MODEL || 'llama-3.1-8b-instant';
 
   const limitedPubs = topPublications.slice(0, 3);
   const limitedTrials = topTrials.slice(0, 2);
